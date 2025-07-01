@@ -96,7 +96,7 @@ const ProviderProfile = ({ provider, onBack, onBook }) => {
 
     fetchReviews();
     fetchBookings();
-    setCurrentProvider(provider); // Update local state when prop changes
+    setCurrentProvider(provider);
   }, [provider]);
 
   const handleReviewSubmitted = async () => {
@@ -106,7 +106,7 @@ const ProviderProfile = ({ provider, onBack, onBook }) => {
         axios.get(`http://localhost:5000/api/providers/${provider._id}`)
       ]);
       setReviews(reviewsRes.data);
-      setCurrentProvider(providerRes.data); // Update provider with new rating
+      setCurrentProvider(providerRes.data);
     } catch (err) {
       console.error('Error refreshing reviews or provider:', err);
     }
@@ -123,7 +123,7 @@ const ProviderProfile = ({ provider, onBack, onBook }) => {
       <div className="flex items-center">
         {currentProvider.photo && (
           <img
-            src={`http://localhost:5000${currentProvider.photo}`}
+            src={currentProvider.photo}
             alt={currentProvider.name}
             className="w-24 h-24 rounded-full mr-4"
           />
